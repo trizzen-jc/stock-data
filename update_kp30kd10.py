@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # ====================== 설정 ======================
-SAVE_DIR = r'G:\내 드라이브\_FTM\Data_Stock'          # Google Drive
+SAVE_DIR = 'data'          # Google Drive
 KOSPI_DIR = os.path.join(SAVE_DIR, 'Kospi')
 KOSDAQ_DIR = os.path.join(SAVE_DIR, 'Kosdaq')
 START_DATE = '2024-12-01'
