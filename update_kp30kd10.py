@@ -52,8 +52,8 @@ print(f'실행 시작: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
 print(f'저장 위치: {SAVE_DIR}')
 
 # 리스트 파일도 Google Drive에 있다고 가정
-kospi_list = os.path.join(SAVE_DIR, 'kospi_list.xlsx')
-kosdaq_list = os.path.join(SAVE_DIR, 'kosdaq_list.xlsx')
+kospi_list = 'kospi_list.xlsx'
+kosdaq_list = 'kosdaq_list.xlsx'
 
 # 코스피 다운로드
 kospi_data = download_stocks(kospi_list, KOSPI_DIR, 'KOSPI')
