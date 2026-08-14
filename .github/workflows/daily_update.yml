@@ -1,0 +1,35 @@
+name: Daily Stock Data Update
+
+on:
+  schedule:
+    # 매일 한국시간 16:30 (UTC 07:30)
+    - cron: '30 7 * * *'
+  workflow_dispatch:  # 수동 실행도 가능
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install finance-datareader pandas openpyxl
+
+      - name: Run update script
+        run: python update_kp30kd10.py
+
+      - name: Commit and push data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git commit -m "Update stock data $(date +'%Y-%m-%d')" || echo "No changes"
+          git push
