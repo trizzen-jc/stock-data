@@ -32,7 +32,7 @@ def download_stocks(list_file, save_dir, market_name):
             
             safe_name = name.replace('/', '_').replace('\\', '_').replace('*', '').replace('?', '')
             file_path = os.path.join(save_dir, f'{code}_{safe_name}.csv')
-            
+            df = df.sort_index(ascending=False)
             df.to_csv(file_path, encoding='utf-8-sig')
             
             df_temp = df.reset_index()
@@ -70,6 +70,7 @@ if all_data:
     df_long = df_long[[c for c in cols if c in df_long.columns]]
     
     long_path = os.path.join(SAVE_DIR, 'market_long.csv')
+    df_long = df_long.sort_values('Date', ascending=False)
     df_long.to_csv(long_path, index=False, encoding='utf-8-sig')
     print(f'\nLong Format 저장 완료 → {long_path}')
     print(f'총 데이터 수: {len(df_long):,}행')
